@@ -1,14 +1,24 @@
 import { View, Text } from 'react-native'
-import React from 'react'
-
+import React, { createContext, useState } from 'react'
 import "./global.css"
+import Usercontext from './Usercontext.js'
 
+export const userContext = createContext("tiwari")
 
 const App = () => {
+
+  const [user, setUser] = useState("ramesh")
+
   return (
-    <View>
-      <Text className='bg-red-600'>Rohan Tiwari khanpur</Text>
-    </View>
+
+    <userContext.Provider value={user}>
+
+      <View>
+        <Text className='bg-green-600'>Rohan Tiwari khanpur</Text>
+        <Usercontext />
+      </View>
+
+    </userContext.Provider >
   )
 }
 
