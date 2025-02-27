@@ -1,25 +1,58 @@
-import { View, Text } from 'react-native'
-import React, { createContext, useState } from 'react'
+import { View, Text, Button } from 'react-native'
+import{useState} from 'react'
 import "./global.css"
-import Usercontext from './Usercontext.js'
-
-export const userContext = createContext("tiwari")
+import {StyleSheet} from 'react-native';
+import Prodct from "./redux/Product"
 
 const App = () => {
-
-  const [user, setUser] = useState("ramesh")
+  const [dark, setDark] = useState(false)
+  const [csschanger, setCsschanger] = useState(false)
 
   return (
 
-    <userContext.Provider value={user}>
+      <View style={[styles.container , {backgroundColor: dark ? 'black' : 'white'}]}>
+        <Text style={styles.title1} >React-Native  |  Redux</Text>
+        <Button title={dark ? 'Black' : 'White'} onPress={() => setDark(!dark)} />
 
-      <View>
-        <Text className='bg-green-600'>Rohan Tiwari khanpur</Text>
-        <Usercontext />
+        <Text></Text>
+        <Button title="Press" onPress={() => setCsschanger(!csschanger)} />
+        <Text style={ csschanger ? styles.title1 : styles.title2} >{csschanger ? 'Changed' : 'Not Changed'}</Text>
+        <Prodct/>
       </View>
-
-    </userContext.Provider >
   )
 }
-
 export default App
+
+const styles = StyleSheet.create({
+
+  container: {
+    flex: 1,
+    padding: 24,
+  },
+  title1: {
+    marginTop: 16,
+    marginBottom: 8,
+    paddingVertical: 8,
+    borderWidth: 4,
+    borderColor: '#20232a',
+    borderRadius: 6,
+    backgroundColor: '#61dafb',
+    color: '#20232a',
+    textAlign: 'center',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  title2: {
+    marginTop: 16,
+    marginBottom: 8,
+    paddingVertical: 8,
+    borderWidth: 4,
+    borderColor: '#20232a',
+    borderRadius: 6,
+    backgroundColor: '#61dafb',
+    color: 'red',
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
